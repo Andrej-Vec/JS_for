@@ -1,9 +1,10 @@
 import { createElement } from '../../helpers/domHelper';
+import { createFighterImage } from '../fighterPreview';
 
 export function showModal({ title, bodyElement, onClose = () => {} }) {
   const root = getModalContainer();
   const modal = createModal({ title, bodyElement, onClose }); 
-  
+ 
   root.append(modal);
 }
 
@@ -11,12 +12,14 @@ function getModalContainer() {
   return document.getElementById('root');
 }
 
-function createModal({ title, bodyElement, onClose }) {
+function createModal({ title='1', bodyElement, onClose }) {
   const layer = createElement({ tagName: 'div', className: 'modal-layer' });
   const modalContainer = createElement({ tagName: 'div', className: 'modal-root' });
   const header = createHeader(title, onClose);
 
-  modalContainer.append(header, bodyElement);
+  const bodyImg = createFighterImage(bodyElement);
+
+  modalContainer.append(header, bodyImg);
   layer.append(modalContainer);
 
   return layer;

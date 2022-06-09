@@ -12,9 +12,15 @@ class FighterService {
     }
   }
 
+  //У класі FighterService створити метод для отримання детальної інформації про бійця.
   async getFighterDetails(id) {
-    // todo: implement this method
-    // endpoint - `details/fighter/${id}.json`;
+    const endpoint = `details/fighter/${id}.json`;
+    try {
+      const fighterInfo = await callApi(endpoint);
+      return fighterInfo;
+    } catch (error) {
+      throw error;
+    }
   }
 }
 

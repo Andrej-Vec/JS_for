@@ -18,6 +18,11 @@
   width: 130px;
 }
 
+.fighter-preview___img {
+  height: 320px;
+  align-self: center;
+}
+
 .preview-container___fight-btn {
   padding: 8px 35px;
   justify-self: right;

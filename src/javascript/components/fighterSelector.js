@@ -2,6 +2,8 @@ import { createElement } from '../helpers/domHelper';
 import { renderArena } from './arena';
 import versusImg from '../../../resources/versus.png';
 import { createFighterPreview } from './fighterPreview';
+import { fighterService } from '../services/fightersService';
+import { getFileInfo } from 'prettier';
 
 export function createFightersSelector() {
   let selectedFighters = [];
@@ -19,9 +21,16 @@ export function createFightersSelector() {
 
 const fighterDetailsMap = new Map();
 
+
+//Додати можливість її перегляду — для цього реалізувати функцію getFighterInfo, яка би опрацьовувала клік по бійцю. 
+//get fighter info from fighterDetailsMap or from service and write it to fighterDetailsMap
 export async function getFighterInfo(fighterId) {
-  // get fighter info from fighterDetailsMap or from service and write it to fighterDetailsMap
+  
+  const fighter = await fighterService.getFighterDetails(fighterId);
+  fighterDetailsMap.set(fighterId, fighter);
+  return fighter;
 }
+
 
 function renderSelectedFighters(selectedFighters) {
   const fightersPreview = document.querySelector('.preview-container___root');
